@@ -1,40 +1,56 @@
-$(document).ready(function() {	
-    var spielbrett = document.getElementById('Spieltisch');
-    spielfeld = spielbrett.getContext('2d');
-    console.log(spielfeld);
-    let cardDeck =[];
-    let Trump;
-    let cardBack = 'gray_back'
-    let cardStrock = [];
-    let discardPile = [];
-
-    let foolRankMask = [[N,N,N,N],[1,1,1,1],[2,2,2,2],[3,3,3,3],[4,4,4,4],[5,5,5,5],
-    [6,6,6,6],[7,7,7,7],[8,8,8,8],[9,9,9,9],[10,10,10,10],[11,11,11,11],
-    [12,12,12,12],[13,13,13,13],[W,W,W,W]];
-
-    function renderStock(cardsDeck, divId, showTrump) {
-        let div = document.getElementById(divId);
-        div.innerHTML = '';
-        div.replaceWith(div);
-        let i = 0;
-        if (showTrump) {
-            let lastCard = document.createElement('Images');
-            lastCard.src = '/Images/cards/' + cardDeck[0].name + '.jpg';
-            lastCard.id = cardDeck[0].name;
-            lastCard.className = 'Trump';
-            div.append(lastCard);
-            i = 1;
+class Card {
+    constructor(suit, rank, value) {
+        this.suit = suit;
+        this.rank = rank;
+        this.value = value;
+    }
+}
+class Deck {
+    constructor() {
+        this.cards = [];
+    }
+    createDeck() { 
+        let suits = ['red', 'green', 'blue', 'yellow'];
+        let ranks = ['jester', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', 'wizard'];
+        let values = [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+        for (let i = 0; i < suits.length; i++) {
+            for (let j = 0; j < ranks.length; j++) {
+                this.cards.push(new Card(suits[i], ranks[j], values[j]));
+            }
         }
-        for (; i < cardDeck.length; i++) {
-            let top = (-20 - i * 0.25) + 'px';
-            let left = (40 + i * 0.25) + 'px';
-            let cardId = 'card' + i;
-            let lastCard = document.createElement('Images');
-            lastCard.src = '/Images/backs/' + cardBack + '.jpg';
-            lastCard.id = cardId;
-            lastCard.className = 'cardInPack';
-            lastCard.style = 'top: ' + top + '; left: ' + left + ';';
-            div.append(lastCard);
-        }
-    }        
-})
+    }
+    shuffleDeck() {
+        let location1, location2, tmp;
+        for (let i = 0; i < 1000; i++) {
+            location1 = Math.floor((Math.random() * this.cards.length));
+            location2 = Math.floor((Math.random() * this.cards.length));
+            tmp = this.cards[location1];
+            this.cards[location1] = this.cards[location2];
+            this.cards[location2] = tmp;
+         }
+    }
+}
+class Player {
+    constructor(name) {
+        this.playerName = name;
+        this.playerCards = [];
+    }
+}
+class Board {
+    constructor() {
+        this.cardsInMiddle = [];
+        this.players = [];
+    }
+    start(playerOneName, playerTwoName) {
+        this.players.push(new Player(playerOneName));
+        this.players.push(new Player(playerTwoName));
+        let d = new Deck();
+        d.createDeck();
+        d.shuffleDeck();    
+        this.players[0].playerCards = d.cards.slice(0, 30);
+        this.players[1].playerCards = d.cards.slice(30, 60);
+    }
+}
+let gameBoard = new Board();
+gameBoard.start('Mario', 'Luigi');
+console.log(gameBoard.players);
