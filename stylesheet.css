@@ -5,3 +5,22 @@ body{
     -o-background-size: cover;
     background-size: cover;
     }
+
+    .card {
+        display:inline-blocktext-align center;
+        margin: 5px;
+        padding: 18px 15px 0 15px;
+        width: 70px;
+        height: 40px;
+        font-size: 22px;
+        background-color: #999999
+    }
+    .red {
+        background-color:#E55451;
+        border: solid 1px #8C001A;
+        color: #8C001A;
+    }
+
+    .template {
+        display:none;
+    }
