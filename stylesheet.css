@@ -1,26 +1,20 @@
-body{
-    background: url("background.jpg") no-repeat center center fixed; 
+body {
+    background: url("background.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    }
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, Arial, sans-serif;
+}
 
-    .card {
-        display:inline-blocktext-align center;
-        margin: 5px;
-        padding: 18px 15px 0 15px;
-        width: 70px;
-        height: 40px;
-        font-size: 22px;
-        background-color: #999999
-    }
-    .red {
-        background-color:#E55451;
-        border: solid 1px #8C001A;
-        color: #8C001A;
-    }
-
-    .template {
-        display:none;
-    }
+.card {
+    display: inline-blocktext-align center;
+    margin: 5px;
+    padding: 18px 15px 0 15px;
+    width: 70px;
+    height: 40px;
+    font-size: 22px;
+    background-color: #999999
+}
