@@ -13,18 +13,10 @@ class Deck {
         let suits = ['red', 'green', 'blue', 'yellow'];
         let ranks = ['jester', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', 'wizard'];
         let values = [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-        $("#drawbtn").click( function() {
-            var myCard = drawCard();
-            if( mayCard ) {
-                makeCard( myCard.suit, myCard.rank );
-            } else {
-                alert("no more cards in the deck");
-            }
         }
         for (let i = 0; i < suits.length; i++) {
             for (let j = 0; j < ranks.length; j++) {
                 this.cards.push(new Card(suits[i], ranks[j], values[j]));
-            }
         }
     }
     shuffleDeck() {
