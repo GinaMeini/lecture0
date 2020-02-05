@@ -3,24 +3,26 @@ class Card {
         this.suit = suit;
         this.rank = rank;
         this.value = value;
+        this.image = new Image()
+        this.image.src = '/Images/cards/' + this.suit + '-' + this.rank + '.jpg'
     }
 }
 class Deck {
     constructor() {
         this.cards = [];
     }
-    createDeck() { 
+    createDeck() {
         let suits = ['red', 'green', 'blue', 'yellow'];
         let ranks = ['jester', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', 'wizard'];
-        let values = [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-        $("#drawbtn").click( function() {
+        let values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+        $("#drawbtn").click(function() {
             var myCard = drawCard();
-            if( mayCard ) {
-                makeCard( myCard.suit, myCard.rank );
+            if (mayCard) {
+                makeCard(myCard.suit, myCard.rank);
             } else {
                 alert("no more cards in the deck");
             }
-        }
+        })
         for (let i = 0; i < suits.length; i++) {
             for (let j = 0; j < ranks.length; j++) {
                 this.cards.push(new Card(suits[i], ranks[j], values[j]));
@@ -35,7 +37,7 @@ class Deck {
             tmp = this.cards[location1];
             this.cards[location1] = this.cards[location2];
             this.cards[location2] = tmp;
-         }
+        }
     }
 }
 class Player {
@@ -54,7 +56,7 @@ class Board {
         this.players.push(new Player(playerTwoName));
         let d = new Deck();
         d.createDeck();
-        d.shuffleDeck();    
+        d.shuffleDeck();
         this.players[0].playerCards = d.cards.slice(0, 30);
         this.players[1].playerCards = d.cards.slice(30, 60);
     }
